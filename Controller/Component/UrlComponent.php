@@ -137,17 +137,4 @@ class UrlComponent extends Component
 		}
 		return '';
 	}
-
-	public function auto_javascript($p_prefix = '', $p_max_level = 3)
-	{
-		App::uses('View', 'View');
-		App::import('Helper', 'Devutils.Url');
-		$this->View = new View($this->Controller);
-		$UrlHelper = new UrlHelper($this->View);
-		$UrlHelper->auto_javascript($p_prefix, $p_max_level);
-
-		/*App::uses('Devutils.UrlHelper', 'View/Helper');
-		$DevutilsUrlHelper = new UrlHelper($this->View);
-		$DevutilsUrlHelper->auto_javascript($p_prefix, $p_max_level);*/
-	}
 }
