@@ -130,3 +130,24 @@ Result : 01310-909
 Command: <?php echo $this->BrCep->mask('01310909', true); ?>
 Result : 01.310-909
 ```
+
+## CpfHelper
+```php
+Command: <?php echo $this->Cpf->validate('727.396.389-57'); ?>
+Result : bool(true)
+```
+
+```php
+Command: <?php echo $this->Cpf->validate('72739638957'); ?>
+Result : bool(true)
+```
+
+```php
+Command: <?php echo $this->Cpf->validate('12345678909'); ?>
+Result : bool(false)
+```
+
+```php
+Command: <?php echo $this->Cpf->validate('15837534718'); ?>
+Result : bool(false)
+```
