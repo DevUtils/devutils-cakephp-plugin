@@ -44,7 +44,6 @@ class UrlHelper extends Helper
 		{
 			return (strtolower($result) == strtolower($p_compare));
 		}
-
 	}
 
 	public function url($p_url)
