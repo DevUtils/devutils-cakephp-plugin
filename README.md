@@ -119,3 +119,14 @@ Result : 30/10/2014 18:10:39
 Command: <?php echo $this->BrDate->toSql('30/10/2014 18:10:39'); ?>
 Result : 2014-10-30 18:10:39
 ```
+
+## BrCepHelper
+```php
+Command: <?php echo $this->BrCep->mask('01310909'); ?>
+Result : 01310-909
+```
+
+```php
+Command: <?php echo $this->BrCep->mask('01310909', true); ?>
+Result : 01.310-909
+```
