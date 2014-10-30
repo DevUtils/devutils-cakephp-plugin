@@ -151,3 +151,19 @@ Result : bool(false)
 Command: <?php echo $this->Cpf->validate('15837534718'); ?>
 Result : bool(false)
 ```
+
+## CnpjHelper
+```php
+Command: <?php echo $this->Cnpj->validate('78.004.106/0001-50'); ?>
+Result : bool(true)
+```
+
+```php
+Command: <?php echo $this->Cnpj->validate('78004106000150'); ?>
+Result : bool(true)
+```
+
+```php
+Command: <?php echo $this->Cnpj->validate('45463355436445'); ?>
+Result : bool(false)
+```
