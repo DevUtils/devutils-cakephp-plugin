@@ -58,7 +58,7 @@ Result : http://plugin.devutils.com.br/pages/url-helper/another-section
 
 ```php
 Command: <?php echo $this->Url->count(); ?>;
-Result : 2&nbsp;
+Result : 2
 1 - pages
 2 - url-helper
 
@@ -93,4 +93,29 @@ Result : pages
 
 Command: <?php echo $this->Url->level('last'); ?>;
 Result : url-helper
+```
+
+## BrDateHelper
+```php
+Command: <?php echo $this->BrDate->brDate(); ?>
+Result : 30/10/2014
+```
+
+```php
+Command: <?php echo $this->BrDate->brDateTime(); ?>
+Result : 30/10/2014 18:10:39
+Command: <?php echo $this->BrDate->sqlDate(); ?>
+Result : 2014-10-30
+```
+
+```php
+Command: <?php echo $this->BrDate->sqlDateTime(); ?>
+Result : 2014-10-30 18:10:39
+Command: <?php echo $this->BrDate->fromSql('2014-10-30 18:10:39'); ?>
+Result : 30/10/2014 18:10:39
+```
+
+```php
+Command: <?php echo $this->BrDate->toSql('30/10/2014 18:10:39'); ?>
+Result : 2014-10-30 18:10:39
 ```
