@@ -119,18 +119,44 @@ Result : 30/10/2014 18:10:39
 ```php
 Command: <?php echo $this->BrDate->longDate(); ?>
 Result : 30 de Outubro de 2014
+
+Command: <?php echo $this->BrDate->longDate('30/10/2014'); ?>
+Result : 30 de Outubro de 2014
+
+Command: <?php echo $this->BrDate->longDate('2014-10-30'); ?>
+Result : 30 de Outubro de 2014
 ```
 
 ```php
 Command: <?php echo $this->BrDate->sqlDate(); ?>
 Result : 2014-10-30
 
+Command: <?php echo $this->BrDate->sqlDate('2014-10-30'); ?>
+Result : 30/10/2014
+
+Command: <?php echo $this->BrDate->sqlDate('2014-10-30 18:10:39'); ?>
+Result : 30/10/2014
+
+```
+
+```php
 Command: <?php echo $this->BrDate->sqlDateTime(); ?>
 Result : 2014-10-30 18:10:39
 
 ```php
+Command: <?php echo $this->BrDate->fromSql('2014-10-30'); ?>
+Result : 30/10/2014
+
 Command: <?php echo $this->BrDate->fromSql('2014-10-30 18:10:39'); ?>
 Result : 30/10/2014 18:10:39
+
+Command: <?php echo $this->BrDate->fromSqlToLong('2014-10-30'); ?>
+Result : 30/10/2014
+```
+
+```php
+Command: <?php echo $this->BrDate->toSql('30/10/2014'); ?>
+Result : 2014-10-30
 
 Command: <?php echo $this->BrDate->toSql('30/10/2014 18:10:39'); ?>
 Result : 2014-10-30 18:10:39
