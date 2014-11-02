@@ -106,25 +106,32 @@ Result : url-helper
 
 ## BrDateHelper
 ```php
-Command: <?php echo $this->BrDate->brDate(); ?>
+Command: <?php echo $this->BrDate->date(); ?>
 Result : 30/10/2014
+
+Command: <?php echo $this->BrDate->time(); ?>
+Result : 18:10:39
+
+Command: <?php echo $this->BrDate->dateTime(); ?>
+Result : 30/10/2014 18:10:39
 ```
 
 ```php
-Command: <?php echo $this->BrDate->brDateTime(); ?>
-Result : 30/10/2014 18:10:39
+Command: <?php echo $this->BrDate->longDate(); ?>
+Result : 30 de Outubro de 2014
+```
+
+```php
 Command: <?php echo $this->BrDate->sqlDate(); ?>
 Result : 2014-10-30
-```
 
-```php
 Command: <?php echo $this->BrDate->sqlDateTime(); ?>
 Result : 2014-10-30 18:10:39
-Command: <?php echo $this->BrDate->fromSql('2014-10-30 18:10:39'); ?>
-Result : 30/10/2014 18:10:39
-```
 
 ```php
+Command: <?php echo $this->BrDate->fromSql('2014-10-30 18:10:39'); ?>
+Result : 30/10/2014 18:10:39
+
 Command: <?php echo $this->BrDate->toSql('30/10/2014 18:10:39'); ?>
 Result : 2014-10-30 18:10:39
 ```

@@ -1,6 +1,8 @@
 <?php
 class BrDateComponent extends Component
 {
+	private $brMonths = array('Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
+
 	public function fromSql($p_sql_date)
 	{
 		try
@@ -39,12 +41,22 @@ class BrDateComponent extends Component
 		}
 	}
 
-	public function brDate()
+	public function longDate()
+	{
+		return sprintf('%s de %s de %s', date('d'), $this->brMonths[date('m')], date('Y'));
+	}
+
+	public function date()
 	{
 		return date('d/m/Y');
 	}
 
-	public function brDateTime()
+	public function time()
+	{
+		return date('H:m:s');
+	}
+
+	public function dateTime()
 	{
 		return date('d/m/Y H:m:s');
 	}
