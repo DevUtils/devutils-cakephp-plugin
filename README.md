@@ -149,15 +149,19 @@ Result : 30/10/2014
 Command: <?php echo $this->BrDate->sqlDateTime(); ?>
 Result : 2014-10-30 18:10:39
 
+Command: <?php echo $this->BrDate->sqlDateTime('2014-10-30'); ?>
+Result : 2014-10-30 00:00:00
+
+Command: <?php echo $this->BrDate->sqlDateTime('2014-10-30 18:10:39'); ?>
+Result : 2014-10-30 18:10:39
+```
+
 ```php
 Command: <?php echo $this->BrDate->fromSql('2014-10-30'); ?>
 Result : 30/10/2014
 
 Command: <?php echo $this->BrDate->fromSql('2014-10-30 18:10:39'); ?>
 Result : 30/10/2014 18:10:39
-
-Command: <?php echo $this->BrDate->fromSqlToLong('2014-10-30'); ?>
-Result : 30/10/2014
 ```
 
 ```php
