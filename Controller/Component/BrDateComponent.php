@@ -101,7 +101,6 @@ class BrDateComponent extends Component
 			else if (strpos($p_br_en_date, '-'))
 			{
 				$en_date_array = $this->enDateToArray($p_br_en_date);
-				pr($en_date_array);
 				return sprintf('%s de %s de %s', $en_date_array[2], $this->brMonths[$en_date_array[1]-1], $en_date_array[0]);
 			}
 			else

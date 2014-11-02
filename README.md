@@ -123,7 +123,13 @@ Result : 30 de Outubro de 2014
 Command: <?php echo $this->BrDate->longDate('30/10/2014'); ?>
 Result : 30 de Outubro de 2014
 
+Command: <?php echo $this->BrDate->longDate('30/10/2014 18:10:39'); ?>
+Result : 30 de Outubro de 2014
+
 Command: <?php echo $this->BrDate->longDate('2014-10-30'); ?>
+Result : 30 de Outubro de 2014
+
+Command: <?php echo $this->BrDate->longDate('2014-10-30 18:10:39'); ?>
 Result : 30 de Outubro de 2014
 ```
 
