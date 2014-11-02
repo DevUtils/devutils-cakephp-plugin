@@ -39,7 +39,6 @@ class UrlComponent extends Component
 		{
 			return (strtolower($result) == strtolower($p_compare));
 		}
-
 	}
 
 	public function url($p_url)
@@ -47,20 +46,31 @@ class UrlComponent extends Component
 		return Router::url($p_url, true);
 	}
 
+	private function generateRandom()
+	{
+		return chr(mt_rand(65,90)) . chr(mt_rand(65,90)) . mt_rand(1000, 9999);
+	}
+
 	public function nocache($p_url)
 	{
-		$nc = chr(mt_rand(65,90)) . chr(mt_rand(65,90)) . mt_rand(1000, 9999);
-		return Router::url($p_url . '?nc=' . $nc, true);
+		return Router::url($p_url . '?nc=' . $this->generateRandom(), true);
 	}
 
-	public function version($p_url, $p_version)
+	public function version($p_url, $p_version = null)
 	{
-		return Router::url($p_url . '?v=' . $p_version, true);
+		if (!empty($p_version))
+		{
+			return (strtolower($p_version) == 'time') ? Router::url($p_url . '?v=' . date('YmdHms'), true) : Router::url($p_url . '?v=' . $p_version, true);
+		}
+		else
+		{
+			return Router::url($p_url . '?v=' . $this->generateRandom(), true);
+		}
 	}
 
-	public function add($p_url_add)
+	public function add()
 	{
-		$url = $this->url_original . '/' . $p_url_add;
+		$url = $this->url_original . '/' . implode('/', func_get_args());
 		$result = Router::url($url, true);
 		return $result;
 	}
