@@ -11,7 +11,7 @@ class UrlComponent extends Component
 		$here = $controller->request->here;
 		$this->url_original = rtrim($here, '/');
 		$this->url_trim     = trim($here, '/');
-		$this->url_array    = $array = explode('/', $this->url_trim);
+		$this->url_array    = explode('/', $this->url_trim);
 		$this->url_section_count = count($this->url_array);
 	}
 	
@@ -77,7 +77,7 @@ class UrlComponent extends Component
 
 	public function count($p_quant = null)
 	{
-		if ($p_quant == null)
+		if ($p_quant === null)
 		{
 			return $this->url_section_count;
 		}
@@ -91,12 +91,12 @@ class UrlComponent extends Component
 	{
 		$url = $this->here();
 		$url = strtolower($url);
-		$array = explode('/', $url);
+		$tmp_array = explode('/', $url);
 
 		if (is_string($p_section))
 		{
 			$locate = strtolower($p_section);
-			return in_array($locate, $array);
+			return in_array($locate, $tmp_array);
 		}
 
 		if (is_array($p_section))
@@ -104,30 +104,31 @@ class UrlComponent extends Component
 			foreach ($p_section as $key => $section)
 			{
 				$locate = strtolower($section);
-				if (in_array($locate, $array))
+				if (in_array($locate, $tmp_array))
 				{
 					return true;
 				}
 			}
 			return false;
 		}
+		return false;
 	}
 
 	public function level($p_level)
 	{
 		$url = $this->here();
 		$url = trim($url, '/');
-		$array = explode('/', $url);
+		$tmp_array = explode('/', $url);
 		$use_level = $p_level;
 		if (empty($use_level)) { $use_level = 1; }
 		if (strtolower($use_level) === 'first') { $use_level = 1; }
 		if (strtolower($use_level) === 'last')
 		{
-			$use_level = count($array);
+			$use_level = count($tmp_array);
 		}
-		if (!empty($array[$use_level-1]))
+		if (!empty($tmp_array[$use_level-1]))
 		{
-			return $array[$use_level-1];
+			return $tmp_array[$use_level-1];
 		}
 		return '';
 	}
@@ -140,11 +141,37 @@ class UrlComponent extends Component
 	public function lastLevel()
 	{
 		$url = $this->here();
-		$array = explode('/', $url);
-		if (!empty($array[count($array)-1]))
+		$tmp_array = explode('/', $url);
+		if (!empty($tmp_array[count($tmp_array)-1]))
 		{
-			return $array[count($array)-1];
+			return $tmp_array[count($tmp_array)-1];
 		}
 		return '';
+	}
+
+	public function auto_javascript($p_prefix = '', $p_max_level = 3)
+	{
+		App::uses('Folder', 'Utility');
+		$url = $this->here();
+		$url = strtolower($url);
+		$url = trim($url, '/');
+		$tmp_array = explode('/', $url);
+		$tmp_count = count($tmp_array);
+		while($tmp_count > $p_max_level)
+		{
+			unset($tmp_array[count($tmp_array)-1]);
+			$tmp_count = count($tmp_array);
+		}
+		$url = implode('/', $tmp_array);
+		$url = str_replace('/', '-', $url);
+		$url = str_replace('_', '-', $url);
+		$base = trim($p_prefix, '/');
+		$filename = WWW_ROOT . $base . DS . 'js' . DS . $url . '.js';
+		$usefile  =  $this->url('/' . $base . '/' . 'js' . '/' . $url . '.js');
+		if (file_exists($filename))
+		{
+			return $this->Html->script($this->url($usefile), array('inline' => false));
+		}
+		return false;
 	}
 }
