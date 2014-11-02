@@ -51,15 +51,26 @@ class UrlHelper extends Helper
 		return Router::url($p_url, true);
 	}
 
-	public function nocache($p_url)
+	private function generateRandom()
 	{
-		$nc = chr(mt_rand(65,90)) . chr(mt_rand(65,90)) . mt_rand(1000, 9999);
-		return Router::url($p_url . '?nc=' . $nc, true);
+		return chr(mt_rand(65,90)) . chr(mt_rand(65,90)) . mt_rand(1000, 9999);
 	}
 
-	public function version($p_url, $p_version)
+	public function nocache($p_url)
 	{
-		return Router::url($p_url . '?v=' . $p_version, true);
+		return Router::url($p_url . '?nc=' . $this->generateRandom(), true);
+	}
+
+	public function version($p_url, $p_version = null)
+	{
+		if (!empty($p_version))
+		{
+			return (strtolower($p_version) == 'time') ? Router::url($p_url . '?v=' . date('YmdHms'), true) : Router::url($p_url . '?v=' . $p_version, true);
+		}
+		else
+		{
+			return Router::url($p_url . '?v=' . $this->generateRandom(), true);
+		}
 	}
 
 	public function add($p_url_add)

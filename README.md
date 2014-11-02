@@ -49,6 +49,12 @@ Result : http://plugin.devutils.com.br/js/scripts.js?nc=YQ9184
 ```php
 Command: <?php echo $this->Url->version('/test-page', '2.0.5'); ?>;
 Result : http://plugin.devutils.com.br/test-page?v=2.0.5
+
+Command: <?php echo $this->Url->version('/test-page', 'time'); ?>;
+Result : http://plugin.devutils.com.br/test-page?v=20141102171135
+
+Command: <?php echo $this->Url->version('/test-page'); ?>;
+Result : http://plugin.devutils.com.br/test-page?v=WD5046
 ```
 
 ```php
