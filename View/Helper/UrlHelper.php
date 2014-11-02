@@ -73,9 +73,9 @@ class UrlHelper extends Helper
 		}
 	}
 
-	public function add($p_url_add)
+	public function add()
 	{
-		$url = $this->url_original . '/' . $p_url_add;
+		$url = $this->url_original . '/' . implode('/', func_get_args());
 		$result = Router::url($url, true);
 		return $result;
 	}

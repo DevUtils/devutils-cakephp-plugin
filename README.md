@@ -7,97 +7,100 @@ CakePHP Plugin with common Helpers and Controllers facilities
 Pagina: http://plugin.devutils.com.br/pages/url-helper/
 
 ```php
-Command: <?php echo $this->Url->here(); ?>;
+Command: <?php echo $this->Url->here(); ?>
 Result : /pages/url-helper
 ```
 
 ```php
-Command: <?php echo $this->Url->url('/test-page'); ?>;
+Command: <?php echo $this->Url->url('/test-page'); ?>
 Result : http://plugin.devutils.com.br/test-page</pre>
 ```
 
 ```php
-Command: <?php echo $this->Url->here('/pages/url-helper'); ?>;
+Command: <?php echo $this->Url->here('/pages/url-helper'); ?>
 Result : bool(true)
 
-Command: <?php echo $this->Url->here('/pages/url-helper/'); ?>;
+Command: <?php echo $this->Url->here('/pages/url-helper/'); ?>
 Result : bool(true)
 
-Command: <?php echo $this->Url->here('/pages/other-page/'); ?>;
+Command: <?php echo $this->Url->here('/pages/other-page/'); ?>
 Result : bool(false)
 ```
 
 ```php
-Command: <?php echo $this->Url->slug(); ?>;
+Command: <?php echo $this->Url->slug(); ?>
 Result : pages-url-helper	
 
-Command: <?php echo $this->Url->slug('pages-url-helper'); ?>;
+Command: <?php echo $this->Url->slug('pages-url-helper'); ?>
 Result : bool(true)
 
-Command: <?php echo $this->Url->slug('pages-other-page'); ?>;
+Command: <?php echo $this->Url->slug('pages-other-page'); ?>
 Result : bool(false)
 ```
 
 ```php
-Command: <?php echo $this->Url->nocache('/test-page'); ?>;
+Command: <?php echo $this->Url->nocache('/test-page'); ?>
 Result : http://plugin.devutils.com.br/test-page?nc=PQ5874
 
-Command: <?php echo $this->Url->nocache('/js/scripts.js'); ?>;
+Command: <?php echo $this->Url->nocache('/js/scripts.js'); ?>
 Result : http://plugin.devutils.com.br/js/scripts.js?nc=YQ9184
 ```
 
 ```php
-Command: <?php echo $this->Url->version('/test-page', '2.0.5'); ?>;
+Command: <?php echo $this->Url->version('/test-page', '2.0.5'); ?>
 Result : http://plugin.devutils.com.br/test-page?v=2.0.5
 
-Command: <?php echo $this->Url->version('/test-page', 'time'); ?>;
+Command: <?php echo $this->Url->version('/test-page', 'time'); ?>
 Result : http://plugin.devutils.com.br/test-page?v=20141102171135
 
-Command: <?php echo $this->Url->version('/test-page'); ?>;
+Command: <?php echo $this->Url->version('/test-page'); ?>
 Result : http://plugin.devutils.com.br/test-page?v=WD5046
 ```
 
 ```php
-Command: <?php echo $this->Url->add('another-section'); ?>;
+Command: <?php echo $this->Url->add('another-section'); ?>
 Result : http://plugin.devutils.com.br/pages/url-helper/another-section
+
+Command: <?php echo $this->Url->add('another-section', 'another-sub-section'); ?>
+Result : http://plugin.devutils.com.br/pages/url-helper/another-section/another-sub-section
 ```
 
 ```php
-Command: <?php echo $this->Url->count(); ?>;
+Command: <?php echo $this->Url->count(); ?>
 Result : 2
 1 - pages
 2 - url-helper
 
-Command: <?php echo $this->Url->count(1); ?>;
+Command: <?php echo $this->Url->count(1); ?>
 Result : bool(false)
 
-Command: <?php echo $this->Url->count(2); ?>;
+Command: <?php echo $this->Url->count(2); ?>
 Result : bool(true)
 
-Command: <?php echo $this->Url->count(3); ?>;
+Command: <?php echo $this->Url->count(3); ?>
 Result : bool(false)
 ```
 
 ```php
-Command: <?php echo $this->Url->firstLevel(); ?>;
+Command: <?php echo $this->Url->firstLevel(); ?>
 Result : pages
 
-Command: <?php echo $this->Url->lastLevel(); ?>;
+Command: <?php echo $this->Url->lastLevel(); ?>
 Result : url-helper
 
-Command: <?php echo $this->Url->level(1); ?>;
+Command: <?php echo $this->Url->level(1); ?>
 Result : pages
 
-Command: <?php echo $this->Url->level(2); ?>;
+Command: <?php echo $this->Url->level(2); ?>
 Result : url-helper
 
-Command: <?php echo $this->Url->level(3); ?>;
+Command: <?php echo $this->Url->level(3); ?>
 Result : 
 
-Command: <?php echo $this->Url->level('first'); ?>;
+Command: <?php echo $this->Url->level('first'); ?>
 Result : pages
 
-Command: <?php echo $this->Url->level('last'); ?>;
+Command: <?php echo $this->Url->level('last'); ?>
 Result : url-helper
 ```
 
