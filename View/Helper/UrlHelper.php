@@ -46,9 +46,9 @@ class UrlHelper extends Helper
 		}
 	}
 
-	public function url($p_url)
+	public function url($url = null, $full = true)
 	{
-		return Router::url($p_url, true);
+		return Router::url($url, $full);
 	}
 
 	private function generateRandom()
