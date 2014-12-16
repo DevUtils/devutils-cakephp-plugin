@@ -3,6 +3,13 @@ devutils-cakephp-plugin
 
 CakePHP Plugin with common Helpers and Controllers facilities
 
+## Installation
+- Copy the contents on \app\Plugin\DevUtils;
+- insert on /app/Config/bootstrap.php:
+```php
+CakePlugin::load('DevUtils');
+```
+
 ## UrlHelper
 Pagina: http://plugin.devutils.com.br/pages/url-helper/
 
