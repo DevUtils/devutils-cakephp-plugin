@@ -26,7 +26,7 @@ class UrlComponent extends Component
 		return ($temp1 == $temp2);
 	}
 
-	public function slug($p_compare = null)
+	public function slug($p_compare = null, $p_partial = false)
 	{
 		$result = str_replace('/', '-', $this->url_trim);
 		$result = (empty($result)) ? 'home' : $result;
@@ -37,7 +37,14 @@ class UrlComponent extends Component
 		}
 		else
 		{
-			return (strtolower($result) == strtolower($p_compare));
+			if (!$p_partial)
+			{
+				return (strtolower($result) == strtolower($p_compare));
+			}
+			else
+			{
+				return (strpos(strtolower($result), strtolower($p_compare)) !== false);
+			}
 		}
 	}
 
@@ -87,7 +94,7 @@ class UrlComponent extends Component
 		}
 	}
 
-	public function has($p_section)
+	public function has($p_section, $p_match_all = false)
 	{
 		$url = $this->here();
 		$url = strtolower($url);
@@ -101,15 +108,34 @@ class UrlComponent extends Component
 
 		if (is_array($p_section))
 		{
-			foreach ($p_section as $key => $section)
+			if (!$p_match_all)
 			{
-				$locate = strtolower($section);
-				if (in_array($locate, $tmp_array))
+				foreach ($p_section as $key => $section)
 				{
-					return true;
+					$locate = strtolower($section);
+					if (in_array($locate, $tmp_array))
+					{
+						return true;
+					}
 				}
+				return false;
 			}
-			return false;
+			else
+			{
+				$matchs = array();
+				foreach ($p_section as $key => $section)
+				{
+					$locate = strtolower($section);
+					if (in_array($locate, $tmp_array))
+					{
+						if (!in_array($locate, $matchs))
+						{
+							$matchs[] = $locate;
+						}
+					}
+				}
+				return count($matchs) >= count($p_section);
+			}
 		}
 		return false;
 	}
