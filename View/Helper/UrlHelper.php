@@ -31,7 +31,7 @@ class UrlHelper extends Helper
 		return ($temp1 == $temp2);
 	}
 
-	public function slug($p_compare = null)
+	public function slug($p_compare = null, $p_partial = false)
 	{
 		$result = str_replace('/', '-', $this->url_trim);
 		$result = (empty($result)) ? 'home' : $result;
@@ -42,7 +42,14 @@ class UrlHelper extends Helper
 		}
 		else
 		{
-			return (strtolower($result) == strtolower($p_compare));
+			if (!$p_partial)
+			{
+				return (strtolower($result) == strtolower($p_compare));
+			}
+			else
+			{
+				return (strpos(strtolower($result), strtolower($p_compare)) !== false);
+			}
 		}
 	}
 
@@ -119,7 +126,7 @@ class UrlHelper extends Helper
 		return false;
 	}
 
-	public function level($p_level)
+	public function level($p_level, $p_compare = null)
 	{
 		$url = $this->here();
 		$url = trim($url, '/');
@@ -133,25 +140,27 @@ class UrlHelper extends Helper
 		}
 		if (!empty($tmp_array[$use_level-1]))
 		{
-			return $tmp_array[$use_level-1];
+			$result = $tmp_array[$use_level-1];
+			return ($p_compare === null) ? $result : (strcasecmp($result, $p_compare) === 0);
 		}
-		return '';
+		return ($p_compare === null) ? '' : ($p_compare === '');
 	}
 
-	public function firstLevel()
+	public function firstLevel($p_compare = null)
 	{
-		return $this->level(1);
+		$result = $this->level(1);
+		return ($p_compare === null) ? $result : (strcasecmp($result, $p_compare) === 0);
 	}
 
-	public function lastLevel()
+	public function lastLevel($p_compare = null)
 	{
 		$url = $this->here();
 		$tmp_array = explode('/', $url);
 		if (!empty($tmp_array[count($tmp_array)-1]))
 		{
-			return $tmp_array[count($tmp_array)-1];
+			return ($p_compare === null) ? $tmp_array[count($tmp_array)-1] : (strcasecmp($tmp_array[count($tmp_array)-1], $p_compare) === 0);
 		}
-		return '';
+		return ($p_compare === null) ? '' : ($p_compare === '');
 	}
 
 	public function auto_javascript($p_prefix = '', $p_max_level = 3)

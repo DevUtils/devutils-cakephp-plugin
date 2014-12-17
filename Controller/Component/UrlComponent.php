@@ -140,7 +140,7 @@ class UrlComponent extends Component
 		return false;
 	}
 
-	public function level($p_level)
+	public function level($p_level, $p_compare = null)
 	{
 		$url = $this->here();
 		$url = trim($url, '/');
@@ -154,25 +154,22 @@ class UrlComponent extends Component
 		}
 		if (!empty($tmp_array[$use_level-1]))
 		{
-			return $tmp_array[$use_level-1];
+			$result = $tmp_array[$use_level-1];
+			return ($p_compare === null) ? $result : (strcasecmp($result, $p_compare) === 0);
 		}
-		return '';
+		return ($p_compare === null) ? '' : ($p_compare === '');
 	}
 
-	public function firstLevel()
+	public function firstLevel($p_compare = null)
 	{
-		return $this->level(1);
+		$result = $this->level(1, $p_compare);
+		return $result;
 	}
 
-	public function lastLevel()
+	public function lastLevel($p_compare = null)
 	{
-		$url = $this->here();
-		$tmp_array = explode('/', $url);
-		if (!empty($tmp_array[count($tmp_array)-1]))
-		{
-			return $tmp_array[count($tmp_array)-1];
-		}
-		return '';
+		$result = $this->level('last', $p_compare);
+		return $result;
 	}
 
 	public function auto_javascript($p_prefix = '', $p_max_level = 3)
