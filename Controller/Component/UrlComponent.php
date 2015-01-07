@@ -17,7 +17,7 @@ class UrlComponent extends Component
 	
 	public function here($p_compare = null)
 	{
-		if (isset($p_compare))
+		if (!isset($p_compare))
 		{
 			return $this->url_original;
 		}
