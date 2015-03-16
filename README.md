@@ -1,5 +1,5 @@
-devutils-cakephp-plugin
-=======================
+ devutils-cakephp-plugin
+=========================
 
 CakePHP Plugin with common Helpers and Controllers facilities
 
