@@ -3,14 +3,14 @@ class BrDateComponent extends Component
 {
 	private $brMonths = array('Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
 
-	public function fromSql($p_sql_date)
+	public function fromSql($p_sql_date, $p_use_time = true)
 	{
 		try
 		{
 			$temp1 = explode(' ', $p_sql_date);
 			$temp2 = explode('-', $temp1[0]);
 			$result = sprintf('%s/%s/%s', $temp2[2], $temp2[1], $temp2[0]);
-			if (count($temp1) > 1)
+			if ( (count($temp1) > 1) && ($p_use_time) )
 			{
 				$result = $result . ' ' . $temp1[1];
 			}
