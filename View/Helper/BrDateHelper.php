@@ -7,6 +7,7 @@ class BrDateHelper extends Helper
 
 	public function fromSql($p_sql_date)
 	{
+		if (empty($p_sql_date)) { return $p_sql_date; }
 		try
 		{
 			$temp1 = explode(' ', $p_sql_date);
