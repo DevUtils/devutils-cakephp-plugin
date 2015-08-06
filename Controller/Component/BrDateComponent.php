@@ -5,6 +5,7 @@ class BrDateComponent extends Component
 
 	public function fromSql($p_sql_date, $p_use_time = true)
 	{
+		if (empty($p_sql_date)) { return $p_sql_date; }
 		try
 		{
 			$temp1 = explode(' ', $p_sql_date);
