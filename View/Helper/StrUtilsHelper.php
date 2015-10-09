@@ -47,4 +47,30 @@ class StrUtilsHelper extends Helper
 		}
 		return $result;
 	}
+
+	public function fullNestedList($list)
+	{
+		$result = '<ul>';
+		foreach ($list as $key => $value)
+		{
+			if (!is_array($value))
+			{
+				if ((string)$key != '0')
+				{
+					$result .= sprintf('<li>%s: %s</li>', $key, $value);
+				}
+				else
+				{
+					$result .= sprintf('<li>%s</li>', $value);
+				}
+			}
+			else
+			{
+				$result .= sprintf('<li>%s:%s</li>', $key, $this->fullNestedList($value));
+			}
+		}
+		$result .= '</ul>';
+		return $result;
+	}
+
 }
