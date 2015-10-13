@@ -50,6 +50,10 @@ class StrUtilsHelper extends Helper
 
 	public function fullNestedList($list)
 	{
+		if ($list === null)
+		{
+			return '';
+		}
 		$result = '<ul>';
 		foreach ($list as $key => $value)
 		{
@@ -71,6 +75,17 @@ class StrUtilsHelper extends Helper
 		}
 		$result .= '</ul>';
 		return $result;
+	}
+
+	public function splitFileName($p_filename)
+	{
+		$tmp = explode(".", $file_name);
+		$ext = array_pop($tmp);
+		$fil = substr($file_name, 0, ((strlen($ext)+1) * -1));
+		$r = array();
+		$r["name"] = $fil;
+		$r["ext"]  = $ext;
+		return $r;
 	}
 
 }
