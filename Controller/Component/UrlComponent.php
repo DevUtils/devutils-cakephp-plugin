@@ -5,14 +5,22 @@ class UrlComponent extends Component
 	protected $url_trim;
 	protected $url_array;
 	protected $url_section_count;
+	protected $levels;
 
 	function initialize(Controller $controller)
 	{
-		$here = $controller->request->here;
-		$this->url_original = rtrim($here, '/');
-		$this->url_trim     = trim($here, '/');
-		$this->url_array    = explode('/', $this->url_trim);
+		$here                    = $controller->request->here;
+		$request_url             = ($controller->request->url) ? $controller->request->url : '';
+		$this->levels            = explode('/', trim($request_url, '/'));
+		$this->url_original      = rtrim($here, '/');
+		$this->url_trim          = trim($here, '/');
+		$this->url_array         = explode('/', $this->url_trim);
 		$this->url_section_count = count($this->url_array);
+	}
+
+	public function getLevels()
+	{
+		return $this->levels;
 	}
 	
 	public function here($p_compare = null)
@@ -29,6 +37,29 @@ class UrlComponent extends Component
 	public function slug($p_compare = null, $p_partial = false)
 	{
 		$result = str_replace('/', '-', $this->url_trim);
+		$result = (empty($result)) ? 'home' : $result;
+
+		if (empty($p_compare))
+		{
+			return $result;
+		}
+		else
+		{
+			if (!$p_partial)
+			{
+				return (strtolower($result) == strtolower($p_compare));
+			}
+			else
+			{
+				return (strpos(strtolower($result), strtolower($p_compare)) !== false);
+			}
+		}
+	}
+
+	public function local_slug($p_compare = null, $p_partial = false)
+	{
+		$levels = implode('-', $this->getLevels());
+		$result = str_replace('/', '-', $levels);
 		$result = (empty($result)) ? 'home' : $result;
 
 		if (empty($p_compare))
@@ -138,6 +169,24 @@ class UrlComponent extends Component
 			}
 		}
 		return false;
+	}
+
+	public function local_level($p_level, $p_compare = null)
+	{
+		$levels = $this->getLevels();
+		$use_level = $p_level;
+		if (empty($use_level)) { $use_level = 1; }
+		if (strtolower($use_level) === 'first') { $use_level = 1; }
+		if (strtolower($use_level) === 'last')
+		{
+			$use_level = count($levels);
+		}
+		if (!empty($levels[$use_level-1]))
+		{
+			$result = $levels[$use_level-1];
+			return ($p_compare === null) ? $result : (strcasecmp($result, $p_compare) === 0);
+		}
+		return ($p_compare === null) ? '' : ($p_compare === '');
 	}
 
 	public function level($p_level, $p_compare = null)
