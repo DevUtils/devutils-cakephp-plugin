@@ -30,6 +30,24 @@ class UrlHelper extends Helper
 		$temp2 = strtolower(rtrim($p_compare, '/'));
 		return ($temp1 == $temp2);
 	}
+	
+	public function printIfHere($p_compare, $p_text)
+	{
+		if ($this->here($p_compare))
+		{
+			return $p_text;
+		}
+		return '';
+	}
+
+	public function printIfNotHere($p_compare, $p_text)
+	{
+		if (!$this->here($p_compare))
+		{
+			return $p_text;
+		}
+		return '';
+	}
 
 	public function slug($p_compare = null, $p_partial = false)
 	{
